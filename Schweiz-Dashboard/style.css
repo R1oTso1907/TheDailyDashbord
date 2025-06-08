@@ -1,0 +1,167 @@
+:root {
+    --text-light: #f0f0f0;
+    --text-dark: #121212;
+    --accent-color: #ffffff;
+    --font-main: 'Inter', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: var(--font-main);
+    background-color: #121212;
+    color: var(--text-light);
+    overflow: hidden; /* Verhindert doppelte Scrollbalken */
+}
+
+.main-nav {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    padding: 10px 25px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 600px; /* Breite angepasst für mehr Platz */
+    max-width: 90%;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-light);
+    margin: 0 15px;
+    font-weight: 500;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.nav-link.active, .nav-link:hover { opacity: 1; }
+
+#live-clock {
+    font-weight: 500;
+    color: var(--text-light);
+    opacity: 0.8;
+    white-space: nowrap; /* Verhindert Zeilenumbruch */
+}
+
+.content-container {
+    height: 100vh;
+    width: 100%;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory; /* Lässt Sektionen "einrasten" */
+}
+
+.fullscreen-section {
+    height: 100vh;
+    width: 100%;
+    scroll-snap-align: start;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    transition: background 1s ease-in-out;
+}
+
+#weather-canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+}
+
+.content-overlay {
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1s ease forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Dynamische Wetter-Hintergründe --- */
+#weather.clear-sky { background: linear-gradient(to top, #ffd700, #ffb6c1); }
+#weather.clouds { background: linear-gradient(to top, #bdc3c7, #2c3e50); }
+#weather.rain { background: linear-gradient(to top, #000039, #000000); }
+#weather.default { background: linear-gradient(to top, #6a85b6, #bac8e0); }
+
+/* --- Stile für die Inhalte --- */
+
+/* Wetter */
+.weather-location { font-size: 2rem; font-weight: 300; }
+.weather-temp { font-size: 8rem; font-weight: 700; line-height: 1; margin: 10px 0; }
+.weather-description { font-size: 1.5rem; font-weight: 500; text-transform: capitalize; margin-bottom: 30px; }
+
+/* Wettersuche */
+.weather-search {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.weather-search input {
+    font-family: var(--font-main);
+    font-size: 1rem;
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--text-light);
+    outline: none;
+}
+.weather-search input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+.weather-search button {
+    font-family: var(--font-main);
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    background: var(--text-light);
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.weather-search button:hover {
+    background: #ccc;
+}
+
+
+/* Nachrichten */
+#news { background-color: #f4f4f4; color: var(--text-dark); }
+#news-content { width: 100%; }
+.news-title { font-size: 3rem; margin-bottom: 40px; }
+.news-ticker { display: flex; overflow-x: auto; padding: 20px 0; }
+.news-item {
+    flex: 0 0 320px;
+    margin: 0 20px;
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.news-item a { text-decoration: none; color: inherit; }
+.news-item h3 { font-size: 1.2rem; margin-bottom: 10px; }
+.news-meta { font-size: 0.9rem; color: #888; }
+
+/* NASA */
+#apod { background-size: cover; background-position: center; }
+.apod-overlay { background: rgba(0, 0, 0, 0.5); padding: 40px; border-radius: 15px; }
+.apod-title { font-size: 3rem; font-weight: 700; }
+.apod-explanation { max-width: 600px; margin: 20px auto 0; line-height: 1.7; }
+
+/* Spinner */
+.spinner { font-size: 2rem; }
