@@ -1,0 +1,18 @@
+WeatherAPI: 8ee00e986f830bcba3e74fa3eabf4136
+
+NewAPI: 899dc4f654794709853c0697a331d82e
+
+
+NasaAPI: rir8UjjxtiRwSlrnPtvyyjlUHC7yWNTAtzHewg4v
+
+StockAPI: d12rdp1r01qv1k0mq0k0d12rdp1r01qv1k0mq0kg
+
+
+
+
+
+const API_KEYS = {
+    weather: '8ee00e986f830bcba3e74fa3eabf4136',
+    news: '899dc4f654794709853c0697a331d82e',
+    nasa: 'rir8UjjxtiRwSlrnPtvyyjlUHC7yWNTAtzHewg4v'
+};
